@@ -1,0 +1,101 @@
+#@layout()
+
+#define script()
+<script>
+
+    function doDel(id) {
+        ajaxGet("#(CPATH)/admin/finance/coupon/doRoleDel/" + id);
+    }
+
+    $("#batchDel").click(function () {
+        var ids = getSelectedIds();
+        if (ids == "") {
+            alert('您未选择任何内容');
+            return
+        }
+        ajaxGet("#(CPATH)/admin/finance/coupon/doRoleDelByIds?ids=" + ids);
+    })
+
+
+</script>
+#end
+
+#define content()
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            优惠券使用记录
+            <small>Coupon Used Record</small>
+        </h1>
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <div class="row actionPanel">
+                            <div class="col-xs-12">
+                                <a href="coupon/edit" class="btn btn-primary ">
+                                    <i class="fa fa-fw fa-plus"></i> 新建
+                                </a>
+                                <button type="submit" id="batchDel" class="btn btn-default checkAction"> 批量删除</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body ">
+
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th style="width: 10px">
+                                    <input name="dataItem" onchange="checkAll(this)" type="checkbox"/>
+                                </th>
+                                <th style="width: 35%">用户</th>
+                                <th style="width: 15%">优惠券</th>
+                                <th style="width: 10%">优惠码</th>
+                                <th style="width: 10%">订单</th>
+                                <th style="width: 10%">优惠券归属用户</th>
+                                <th style="width: 10%">使用时间</th>
+                            </tr>
+                            #for( record : page.list ??)
+                            <tr class="jp-actiontr">
+                                <td><input class="dataItem" type="checkbox" value="#(record.id)" />
+                                </td>
+                                <td>
+                                    <strong>
+                                        #(record.used_user_nickname ??)
+                                    </strong>
+                                </td>
+                                <td>#(record.code.title ??)</td>
+                                <td>#(record.couponCode ??)</td>
+                                <td>#(record.quota ??)</td>
+                                <td>#(record.take_count ??)</td>
+                                <td>#(record.code_user_nickname ??)</td>
+                                <td>#date(record.created ??)</td>
+                            </tr>
+                            #end
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                #@_paginate()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+</div>
+#end

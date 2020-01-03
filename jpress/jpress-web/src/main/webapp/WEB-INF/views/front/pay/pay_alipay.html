@@ -1,0 +1,38 @@
+#include("layout.html")
+#@layout("支付宝扫一扫付款")
+
+#define css()
+<style>
+    .btn-web-alipay{
+        padding: 50px;
+    }
+</style>
+#end
+#define content()
+
+<div class="pay-header">
+    请使用支付宝扫码支付
+</div>
+
+<div class="row pay-content">
+    <div class="col-lg-6 pay-content-info">
+        <div class="pay-content-title">
+            支付宝扫一扫付款
+        </div>
+        <div class="pay-content-money">
+            ￥ #number(payment.pay_amount,'0.00') 元
+        </div>
+        <div class="pay-content-qrcode">
+            <img src="#(qrcode_base64str ??)" />
+        </div>
+    </div>
+    <div class="col-lg-6 pay-content-img">
+        <img src="/static/commons/img/pay-alipay.png" />
+
+        <div class="btn-web-alipay">
+            <a href="#(CAPTH)/pay/alipayweb/#(payment.trx_no)" class="btn btn-primary"> 或登录支付宝账户支付 </a>
+        </div>
+    </div>
+
+</div>
+#end
