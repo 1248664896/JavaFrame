@@ -56,7 +56,7 @@
         <guava.version>28.1-jre</guava.version>
         <cron4j.version>2.2.5</cron4j.version>
         <jedis.version>2.10.2</jedis.version>
-        <jsoup.version>1.12.1</jsoup.version>
+        <jsoup.version>1.14.2</jsoup.version>
         <ehcache.version>2.10.6</ehcache.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
